@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "273331250394",
+    "project_id": "recipe-for-you-21ed9",
+    "storage_bucket": "recipe-for-you-21ed9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:273331250394:android:f1fba41ac6458b45b2b1e3",
+        "android_client_info": {
+          "package_name": "com.jesil.example.custom.recipeforyou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "273331250394-fo85m0fjgphquio8eetariig0p6o6v15.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jesil.example.custom.recipeforyou",
+            "certificate_hash": "746d4c4d60ab0c412b5ebd55af3a1df95e4e397c"
+          }
+        },
+        {
+          "client_id": "273331250394-4nrr6ar21aq98f3sd8s8elguqgq2m5p7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu-4vRGLzcWB1lIFVfCN86AWpKqE7XaSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "273331250394-4nrr6ar21aq98f3sd8s8elguqgq2m5p7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
