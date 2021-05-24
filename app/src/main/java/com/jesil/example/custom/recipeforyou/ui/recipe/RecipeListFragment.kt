@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.jesil.example.custom.recipeforyou.R
 import com.jesil.example.custom.recipeforyou.databinding.RecipeListFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RecipeListFragment : Fragment(R.layout.recipe_list_fragment) {
 
     private val viewModel: RecipeListViewModel by viewModels()
