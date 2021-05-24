@@ -12,8 +12,13 @@
     <color name="yellow">#DCA721</color>
     <color name="green">#50B819</color>
     <color name="blue">#1632CF</color>
+
     <color name="lightBlack">#3A3939</color>
     <color name="darkWhite">#A5A5A5</color>
+
+    <color name="colorOrange">#A67F09</color>
+
+
 
 
 </resources>

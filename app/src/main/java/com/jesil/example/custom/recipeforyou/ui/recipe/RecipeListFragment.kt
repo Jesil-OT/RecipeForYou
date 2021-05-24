@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.jesil.example.custom.recipeforyou.R
 import com.jesil.example.custom.recipeforyou.databinding.RecipeListFragmentBinding
+import com.jesil.example.custom.recipeforyou.ui.utils.adapter.RecipeListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,8 +22,15 @@ class RecipeListFragment : Fragment(R.layout.recipe_list_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = RecipeListFragmentBinding.bind(view)
-        binding.apply {
 
+        val recipeListAdapter = RecipeListAdapter()
+        binding.apply {
+            recipeRecyclerView.apply {
+                adapter = recipeListAdapter
+            }
+        }
+        viewModel.recipeLiveData.observe(viewLifecycleOwner){
+            recipeListAdapter.submitList(it.results)
         }
     }
 
