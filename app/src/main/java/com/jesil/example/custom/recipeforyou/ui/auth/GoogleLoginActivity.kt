@@ -51,11 +51,6 @@ class GoogleLoginActivity : AppCompatActivity() {
                     googleSignInButton.isEnabled = state.or(true)
                 }
             }
-//            viewModel.errorMessage.observe(this@GoogleLoginActivity){ e ->
-//                e.addOnFailureListener {
-//                    showSnackBarMessage(binding = binding.root, it.message.toString())
-//                }
-//            }
         }
     }
 

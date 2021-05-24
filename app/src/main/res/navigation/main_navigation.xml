@@ -2,11 +2,17 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_navigation">
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/favoritesListFragment">
 
     <fragment
         android:id="@+id/recipeListFragment"
         android:name="com.jesil.example.custom.recipeforyou.ui.recipe.RecipeListFragment"
         android:label="recipe_list_fragment"
         tools:layout="@layout/recipe_list_fragment" />
+    <fragment
+        android:id="@+id/favoritesListFragment"
+        android:name="com.jesil.example.custom.recipeforyou.ui.favorites.FavoritesListFragment"
+        android:label="favorites_list_fragment"
+        tools:layout="@layout/favorites_list_fragment" />
 </navigation>
