@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/recipe_list_image"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="230dp"
             android:src="@drawable/empty_plate"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
