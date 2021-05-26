@@ -45,7 +45,7 @@ class RecipePagingAdapter(private val _listener: OnItemClickListener) :
         }
         private val requestOptions = RequestOptions()
             .placeholder(R.drawable.empty_plate)
-            .error(R.drawable.ic_error)
+            .error(R.drawable.ic_broken_image)
 
             fun bind(recipe: RecipeDto) {
                 binding.apply {

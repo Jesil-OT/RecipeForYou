@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fr.castorflex.android.smoothprogressbar.SmoothProgressBar
+        android:id="@+id/recipe_footer_progress_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="8dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:spb_colors="@array/mycolors"
+        app:spb_mirror_mode="true"
+        app:spb_progressiveStart_activated="true"
+        app:spb_progressiveStart_speed="1.2"
+        app:spb_progressiveStop_speed="3.4"
+        app:spb_reversed="false"
+        app:spb_sections_count="3"
+        app:spb_speed="2.0"
+        app:spb_stroke_separator_length="3dp"
+        app:spb_stroke_width="3dp"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/recipe_footer_wifi_off_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_wifi_off" />
+
+    <TextView
+        android:id="@+id/recipe_footer_network_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/network_error"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/recipe_footer_wifi_off_image"
+        app:layout_constraintStart_toStartOf="@+id/recipe_footer_wifi_off_image"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_footer_wifi_off_image" />
+
+    <TextView
+        android:id="@+id/recipe_footer_internet_error_talk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="@string/check_internet_connection"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/recipe_footer_network_error"
+        app:layout_constraintStart_toStartOf="@+id/recipe_footer_network_error"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_footer_network_error" />
+
+    <Button
+        android:id="@+id/recipe_footer_button_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/try_again"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/recipe_footer_internet_error_talk"
+        app:layout_constraintStart_toStartOf="@+id/recipe_footer_internet_error_talk"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_footer_internet_error_talk" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

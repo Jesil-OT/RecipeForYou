@@ -12,6 +12,7 @@ import com.jesil.example.custom.recipeforyou.databinding.RecipeListFragmentBindi
 import com.jesil.example.custom.recipeforyou.ui.model.RecipeDto
 import com.jesil.example.custom.recipeforyou.ui.utils.OnItemClickListener
 import com.jesil.example.custom.recipeforyou.ui.utils.adapter.RecipePagingAdapter
+import com.jesil.example.custom.recipeforyou.ui.utils.adapter.RecipePhotoLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,15 +30,22 @@ class RecipeListFragment : Fragment(R.layout.recipe_list_fragment), OnItemClickL
         binding.apply {
             recipeRecyclerView.apply {
                 setHasFixedSize(true)
-                adapter = recipeListAdapter
+                adapter = recipeListAdapter.withLoadStateHeaderAndFooter(
+                        header = RecipePhotoLoadStateAdapter{
+                            recipeListAdapter.retry()
+                        },
+                        footer = RecipePhotoLoadStateAdapter{
+                            recipeListAdapter.retry()
+                        }
+                )
             }
             recipeButtonRetry.setOnClickListener {
                 recipeListAdapter.retry()
             }
         }
-        viewModel.recipe.observe(viewLifecycleOwner){
-            recipeListAdapter.submitData(viewLifecycleOwner.lifecycle,it)
-            Log.d("TAG", "show paging data $it.")
+        viewModel.recipe.observe(viewLifecycleOwner){ result ->
+            recipeListAdapter.submitData(viewLifecycleOwner.lifecycle,result)
+            Log.d("TAG", "show paging data $result.")
         }
 
         recipeListAdapter.addLoadStateListener { loadState ->

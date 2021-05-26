@@ -48,7 +48,7 @@ class RecipeActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener  {
         val user = getUserFromIntent()
         showSnackBarMessage(
                 binding = binding.root,
-                message = "logged in as ${user?.email} [\\u2713]"
+                message = "logged in as ${user?.email}  ✓"
         )
         binding.apply {
             recipeActivityToolbar.root.apply {

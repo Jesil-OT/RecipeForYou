@@ -10,4 +10,7 @@
     <string name="result_error">Recipes could not be loaded</string>
     <string name="retry">Retry</string>
     <string name="no_result_found">No results found for this search</string>
+    <string name="network_error">Network Error</string>
+    <string name="check_internet_connection">Check your internet connection and Try again</string>
+    <string name="try_again">Try Again</string>
 </resources>
