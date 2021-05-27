@@ -8,7 +8,6 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -21,6 +20,7 @@ import com.jesil.example.custom.recipeforyou.ui.model.UserModel
 import com.jesil.example.custom.recipeforyou.ui.utils.HelperClass.showDialogMessage
 import com.jesil.example.custom.recipeforyou.ui.utils.HelperClass.showSnackBarMessage
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class RecipeActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener  {
@@ -47,8 +47,7 @@ class RecipeActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener  {
         )
         binding.apply {
             recipeActivityToolbar.root.apply {
-                title = user?.name ?: "Recipe For you"
-                subtitle = user?.email
+                title = "Recipe For you"
             }
 //            Glide.with(this@RecipeActivity)import kotlin.math.log
 //                    .load(user?.imageUrl)
@@ -76,22 +75,24 @@ class RecipeActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener  {
     override fun onOptionsItemSelected(item: MenuItem) : Boolean {
         val user = getUserFromIntent()
        return when (item.itemId) {
-            R.id.sign_out -> {
-                showDialogMessage(
-                        context = this,
-                        user = user?.name,
-                        signOutUser = {
-                            signOutUser()
-                            finish()
-                        })
-                true
-            }
-            R.id.setting -> {
-                // TODO : Navigate to Settings Activity
-                true
-            }
-           R.id.profile ->{true}
-           R.id.search ->{
+           R.id.sign_out -> {
+               showDialogMessage(
+                       context = this,
+                       user = user?.name,
+                       signOutUser = {
+                           signOutUser()
+                           finish()
+                       })
+               true
+           }
+           R.id.setting -> {
+               // TODO : Navigate to Settings Activity
+               true
+           }
+           R.id.profile -> {
+               true
+           }
+           R.id.search -> {
                true
            }
             else -> {

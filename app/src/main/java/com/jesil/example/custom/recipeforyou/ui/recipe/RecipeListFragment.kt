@@ -69,7 +69,6 @@ class RecipeListFragment : Fragment(R.layout.recipe_list_fragment), OnItemClickL
                     }
                 }
 
-
                 // empty textView
                 if (loadState.source.refresh is LoadState.NotLoading &&
                         loadState.append.endOfPaginationReached &&

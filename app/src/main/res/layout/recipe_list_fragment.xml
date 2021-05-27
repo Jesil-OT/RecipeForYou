@@ -7,8 +7,8 @@
     tools:context=".ui.recipe.RecipeListFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer_view_container"
@@ -16,35 +16,43 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:orientation="vertical"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-            <include layout="@layout/recipe_shimmer_placeholder_layout" />
+                android:layout_height="match_parent"
+                android:scrollbarSize="0dp">
 
-            <include layout="@layout/recipe_shimmer_placeholder_layout" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <include layout="@layout/recipe_shimmer_placeholder_layout" />
+                    <include layout="@layout/recipe_shimmer_placeholder_layout" />
 
-            <include layout="@layout/recipe_shimmer_placeholder_layout" />
+                    <include layout="@layout/recipe_shimmer_placeholder_layout" />
 
-            <include layout="@layout/recipe_shimmer_placeholder_layout" />
+                    <include layout="@layout/recipe_shimmer_placeholder_layout" />
 
-            <include layout="@layout/recipe_shimmer_placeholder_layout" />
+                    <include layout="@layout/recipe_shimmer_placeholder_layout" />
 
-            <include layout="@layout/recipe_shimmer_placeholder_layout" />
+                    <include layout="@layout/recipe_shimmer_placeholder_layout" />
 
-            <include layout="@layout/recipe_shimmer_placeholder_layout" />
+                    <include layout="@layout/recipe_shimmer_placeholder_layout" />
 
-            <include layout="@layout/recipe_shimmer_placeholder_layout" />
+                    <include layout="@layout/recipe_shimmer_placeholder_layout" />
 
-            </LinearLayout>
+                    <include layout="@layout/recipe_shimmer_placeholder_layout" />
+
+                    <include layout="@layout/recipe_shimmer_placeholder_layout" />
+
+                </LinearLayout>
+
+            </ScrollView>
 
 
         </com.facebook.shimmer.ShimmerFrameLayout>
@@ -62,16 +70,19 @@
 
         <TextView
             android:id="@+id/recipe_text_view_error"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
             android:layout_marginBottom="2dp"
             android:text="@string/result_error"
+            android:textAlignment="center"
             android:textStyle="bold"
             android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/recipe_button_retry"
-            app:layout_constraintEnd_toEndOf="@+id/recipe_button_retry"
-            app:layout_constraintStart_toStartOf="@+id/recipe_button_retry"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             tools:visibility="visible" />
 
         <Button
