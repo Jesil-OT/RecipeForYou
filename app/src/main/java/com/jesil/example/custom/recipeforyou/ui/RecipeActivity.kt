@@ -3,29 +3,24 @@ package com.jesil.example.custom.recipeforyou.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.jesil.example.custom.recipeforyou.R
 import com.jesil.example.custom.recipeforyou.databinding.ActivityRecipeBinding
 import com.jesil.example.custom.recipeforyou.ui.auth.GoogleLoginActivity
 import com.jesil.example.custom.recipeforyou.ui.constants.Constants.USER
 import com.jesil.example.custom.recipeforyou.ui.model.UserModel
+import com.jesil.example.custom.recipeforyou.ui.utils.HelperClass.showDialogMessage
 import com.jesil.example.custom.recipeforyou.ui.utils.HelperClass.showSnackBarMessage
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.log
 
 @AndroidEntryPoint
 class RecipeActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener  {
@@ -52,10 +47,10 @@ class RecipeActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener  {
         )
         binding.apply {
             recipeActivityToolbar.root.apply {
-                title = user?.name
+                title = user?.name ?: "Recipe For you"
                 subtitle = user?.email
             }
-//            Glide.with(this@RecipeActivity)
+//            Glide.with(this@RecipeActivity)import kotlin.math.log
 //                    .load(user?.imageUrl)
 //                    .into(recipeActivityToolbar.userImageView)
 //            Log.d("TAG", "onCreate: ${user?.imageUrl} ")
@@ -82,7 +77,13 @@ class RecipeActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener  {
         val user = getUserFromIntent()
        return when (item.itemId) {
             R.id.sign_out -> {
-                showDialogMessage(context = this, user = user?.name)
+                showDialogMessage(
+                        context = this,
+                        user = user?.name,
+                        signOutUser = {
+                            signOutUser()
+                            finish()
+                        })
                 true
             }
             R.id.setting -> {
@@ -90,30 +91,12 @@ class RecipeActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener  {
                 true
             }
            R.id.profile ->{true}
-           R.id.search ->{true}
+           R.id.search ->{
+               true
+           }
             else -> {
                 super.onOptionsItemSelected(item)
             }
-        }
-    }
-
-    private fun showDialogMessage(context: RecipeActivity, user : String?) {
-        val alertDialog = MaterialAlertDialogBuilder(context)
-
-        alertDialog.apply {
-            setTitle("Sign out")
-            setMessage("Are you sure you want to Sign out $user")
-            setPositiveButton(
-                    "Yes"
-            ) { dialog, which ->
-                signOutUser()
-                finish()
-            }
-            setNegativeButton(
-                    "No"
-            ) { dialog, which ->
-            }
-            show()
         }
     }
 

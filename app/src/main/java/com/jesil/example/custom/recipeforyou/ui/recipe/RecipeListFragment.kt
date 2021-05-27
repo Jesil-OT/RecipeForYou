@@ -51,10 +51,23 @@ class RecipeListFragment : Fragment(R.layout.recipe_list_fragment), OnItemClickL
         recipeListAdapter.addLoadStateListener { loadState ->
 
             binding.apply {
-                recipeProgressBar.isVisible = loadState.source.refresh is LoadState.Loading
                 recipeRecyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
                 recipeButtonRetry.isVisible = loadState.source.refresh is LoadState.Error
                 recipeTextViewError.isVisible = loadState.source.refresh is LoadState.Error
+
+                // shimmer
+                if (loadState.source.refresh is LoadState.Loading){
+                    shimmerViewContainer.apply{
+                        isVisible = loadState.source.refresh is LoadState.Loading
+                        startShimmer()
+                    }
+                }
+                else {
+                    shimmerViewContainer.apply{
+                        visibility = View.GONE
+                        stopShimmer()
+                    }
+                }
 
 
                 // empty textView
@@ -68,6 +81,16 @@ class RecipeListFragment : Fragment(R.layout.recipe_list_fragment), OnItemClickL
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.shimmerViewContainer.startShimmer()
+    }
+
+    override fun onPause() {
+        binding.shimmerViewContainer.stopShimmer()
+        super.onPause()
     }
 
     override fun onDestroyView() {

@@ -15,8 +15,8 @@ class RecipeRepository @Inject constructor(
     fun getSearchResult(query: String) =
         Pager(
             config = PagingConfig(
-                pageSize = 30,
-                maxSize = 161,
+                pageSize = 15,
+                maxSize = 300,
                 enablePlaceholders = false
             ),
             pagingSourceFactory = {
@@ -25,3 +25,5 @@ class RecipeRepository @Inject constructor(
             }
         ).liveData
 }
+
+// before pageSize = 30 and maxSize = 161

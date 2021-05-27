@@ -17,8 +17,8 @@
     <color name="darkWhite">#A5A5A5</color>
 
     <color name="colorOrange">#A67F09</color>
-
-
+    <color name="colorGrey">#dddddd</color>
+    <color name="colorDarkGrey">#B3B2B2</color>
 
 
 </resources>
