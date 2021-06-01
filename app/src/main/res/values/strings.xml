@@ -13,4 +13,9 @@
     <string name="network_error">Network Error</string>
     <string name="check_internet_connection">Check your internet connection and Try again</string>
     <string name="try_again">Try Again</string>
+    <string name="date_added">Date Added</string>
+    <string name="date_updated">Date Updated</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ingredients">ingredients</string>
 </resources>

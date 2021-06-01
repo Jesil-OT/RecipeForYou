@@ -26,7 +26,7 @@ data class RecipeDto(
     @SerializedName("cooking_instructions")
     val cookingInstructions : String? = null,
 
-    val ingredients : List<String>,
+    val ingredients : ArrayList<String>,
 
     @SerializedName("date_added")
     val dateAdded : String,

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.jesil.example.custom.recipeforyou.ui.api.RecipeApiService
+import com.jesil.example.custom.recipeforyou.ui.constants.Constants.token
 import com.jesil.example.custom.recipeforyou.ui.model.RecipeDto
 import retrofit2.HttpException
 import java.io.IOException
@@ -19,7 +20,7 @@ class RecipePagingSource(
             val position = params.key ?: 1
 
             val response = recipeApiService.getRecipes(
-                authorization = "Token 9c8b06d329136da358c2d00e76946b0111ce2c48", // Token 9c8b06d329136da358c2d00e76946b0111ce2c48
+                authorization = token, // Token 9c8b06d329136da358c2d00e76946b0111ce2c48
                 page = position,
                 query = query
             )

@@ -24,23 +24,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@+id/main_bottom_navigation"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recipe_activity_toolbar"
             app:navGraph="@navigation/main_navigation" />
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/main_bottom_navigation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            app:itemIconSize="28sp"
-            app:labelVisibilityMode="labeled"
-            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_navigation_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

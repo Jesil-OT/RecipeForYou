@@ -15,7 +15,7 @@ class RecipeRepository @Inject constructor(
     fun getSearchResult(query: String) =
         Pager(
             config = PagingConfig(
-                pageSize = 15,
+                pageSize = 30,
                 maxSize = 300,
                 enablePlaceholders = false
             ),

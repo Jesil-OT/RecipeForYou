@@ -6,14 +6,23 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.jesil.example.custom.recipeforyou.R
 import com.jesil.example.custom.recipeforyou.databinding.RecipeListFragmentBinding
 import com.jesil.example.custom.recipeforyou.ui.model.RecipeDto
+import com.jesil.example.custom.recipeforyou.ui.recipe.recipeDetails.RecipeListDetailsFragment
 import com.jesil.example.custom.recipeforyou.ui.utils.OnItemClickListener
 import com.jesil.example.custom.recipeforyou.ui.utils.adapter.RecipePagingAdapter
 import com.jesil.example.custom.recipeforyou.ui.utils.adapter.RecipePhotoLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
+
+
+/**
+ * A simple [Fragment] subclass.
+ * Use the [RecipeListDetailsFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
 
 @AndroidEntryPoint
 class RecipeListFragment : Fragment(R.layout.recipe_list_fragment), OnItemClickListener {
@@ -54,6 +63,7 @@ class RecipeListFragment : Fragment(R.layout.recipe_list_fragment), OnItemClickL
                 recipeRecyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
                 recipeButtonRetry.isVisible = loadState.source.refresh is LoadState.Error
                 recipeTextViewError.isVisible = loadState.source.refresh is LoadState.Error
+                recipeNoConnectionImage.isVisible = loadState.source.refresh is LoadState.Error
 
                 // shimmer
                 if (loadState.source.refresh is LoadState.Loading){
@@ -61,12 +71,14 @@ class RecipeListFragment : Fragment(R.layout.recipe_list_fragment), OnItemClickL
                         isVisible = loadState.source.refresh is LoadState.Loading
                         startShimmer()
                     }
+                    recipeProgressBar.isVisible = loadState.source.refresh is LoadState.Loading
                 }
                 else {
                     shimmerViewContainer.apply{
                         visibility = View.GONE
                         stopShimmer()
                     }
+                    recipeProgressBar.visibility = View.GONE
                 }
 
                 // empty textView
@@ -98,7 +110,8 @@ class RecipeListFragment : Fragment(R.layout.recipe_list_fragment), OnItemClickL
     }
 
     override fun onItemClick(recipe: RecipeDto) {
-        TODO("Not yet implemented")
+        val action = RecipeListFragmentDirections.actionRecipeListFragmentToRecipeListDetailsFragment(recipe = recipe)
+        findNavController().navigate(action)
     }
 
 }

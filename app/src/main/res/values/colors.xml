@@ -20,5 +20,7 @@
     <color name="colorGrey">#dddddd</color>
     <color name="colorDarkGrey">#B3B2B2</color>
 
+    <color name="red_400">#EF3835</color>
+
 
 </resources>

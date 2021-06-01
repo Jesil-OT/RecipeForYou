@@ -13,7 +13,7 @@ class RecipeListViewModel @ViewModelInject constructor(
    private val recipeRepository: RecipeRepository
 ): ViewModel() {
 
-    private val currencyQuery = MutableLiveData("beef")
+    private val currencyQuery = MutableLiveData("rice")
 
     val recipe = currencyQuery.switchMap { queryString->
         recipeRepository.getSearchResult(query = queryString).cachedIn(viewModelScope)

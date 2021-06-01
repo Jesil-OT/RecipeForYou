@@ -6,7 +6,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -25,6 +29,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RecipeActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener  {
     private lateinit var binding : ActivityRecipeBinding
+    private lateinit var navController : NavController
     private lateinit var googleSignInClient : GoogleSignInClient
     private val firebaseAuth = FirebaseAuth.getInstance()
     private lateinit var photoUri : Uri
@@ -34,12 +39,14 @@ class RecipeActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener  {
         binding = ActivityRecipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        binding.mainBottomNavigation.setupWithNavController(navController)
-
         initGoogleSignInClient()
         setSupportActionBar(binding.recipeActivityToolbar.root)
+        val navHostFragment =
+                supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.findNavController()
+        val appBarConfiguration = AppBarConfiguration(navGraph = navController.graph)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
         val user = getUserFromIntent()
         showSnackBarMessage(
                 binding = binding.root,
@@ -65,6 +72,10 @@ class RecipeActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener  {
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

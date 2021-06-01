@@ -10,6 +10,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <fr.castorflex.android.smoothprogressbar.SmoothProgressBar
+            android:id="@+id/recipe_progress_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:spb_colors="@array/mycolors"
+            app:spb_mirror_mode="true"
+            app:spb_progressiveStart_activated="true"
+            app:spb_progressiveStart_speed="1.2"
+            app:spb_progressiveStop_speed="3.4"
+            app:spb_reversed="false"
+            app:spb_sections_count="3"
+            app:spb_speed="2.0"
+            app:spb_stroke_separator_length="3dp"
+            app:spb_stroke_width="3dp"
+            tools:visibility="visible" />
+
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer_view_container"
             android:layout_width="match_parent"
@@ -115,6 +138,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/recipe_no_connection_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_wifi_off"
+            app:layout_constraintBottom_toTopOf="@+id/recipe_text_view_error"
+            app:layout_constraintEnd_toEndOf="@+id/recipe_text_view_error"
+            app:layout_constraintStart_toStartOf="@+id/recipe_text_view_error" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

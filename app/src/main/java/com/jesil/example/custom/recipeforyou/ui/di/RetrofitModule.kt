@@ -1,6 +1,7 @@
 package com.jesil.example.custom.recipeforyou.ui.di
 
 import com.jesil.example.custom.recipeforyou.ui.api.RecipeApiService
+import com.jesil.example.custom.recipeforyou.ui.constants.Constants.RECIPE_BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +18,7 @@ object RetrofitModule {
     @Singleton
     fun provideRetrofit() : Retrofit =
         Retrofit.Builder()
-            .baseUrl("https://food2fork.ca/api/recipe/")
+            .baseUrl(RECIPE_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
