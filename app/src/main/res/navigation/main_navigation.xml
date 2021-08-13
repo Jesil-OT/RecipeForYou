@@ -2,11 +2,36 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_navigation">
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/recipeListFragment">
 
     <fragment
         android:id="@+id/recipeListFragment"
         android:name="com.jesil.example.custom.recipeforyou.ui.recipe.RecipeListFragment"
-        android:label="recipe_list_fragment"
-        tools:layout="@layout/recipe_list_fragment" />
+        android:label="Recipe for you"
+        tools:layout="@layout/recipe_list_fragment">
+        <action
+            android:id="@+id/action_recipeListFragment_to_recipeListDetailsFragment"
+            app:destination="@id/recipeListDetailsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeListDetailsFragment"
+        android:name="com.jesil.example.custom.recipeforyou.ui.recipe.recipeDetails.RecipeListDetailsFragment"
+        android:label="Recipe details"
+        tools:layout="@layout/recipe_list_details_fragment">
+        <argument
+            android:name="recipe"
+            app:argType="com.jesil.example.custom.recipeforyou.ui.model.RecipeDto" />
+        <action
+            android:id="@+id/action_recipeListDetailsFragment_to_recipeListFragment"
+            app:destination="@id/recipeListFragment"
+            app:enterAnim="@anim/fade_out"
+            app:exitAnim="@anim/fade_in"
+            app:popEnterAnim="@anim/fade_out"
+            app:popExitAnim="@anim/fade_in" />
+    </fragment>
 </navigation>

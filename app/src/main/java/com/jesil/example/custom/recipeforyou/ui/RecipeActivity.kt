@@ -3,12 +3,15 @@ package com.jesil.example.custom.recipeforyou.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -18,13 +21,15 @@ import com.jesil.example.custom.recipeforyou.databinding.ActivityRecipeBinding
 import com.jesil.example.custom.recipeforyou.ui.auth.GoogleLoginActivity
 import com.jesil.example.custom.recipeforyou.ui.constants.Constants.USER
 import com.jesil.example.custom.recipeforyou.ui.model.UserModel
+import com.jesil.example.custom.recipeforyou.ui.utils.HelperClass.showDialogMessage
 import com.jesil.example.custom.recipeforyou.ui.utils.HelperClass.showSnackBarMessage
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.log
+
 
 @AndroidEntryPoint
 class RecipeActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener  {
     private lateinit var binding : ActivityRecipeBinding
+    private lateinit var navController : NavController
     private lateinit var googleSignInClient : GoogleSignInClient
     private val firebaseAuth = FirebaseAuth.getInstance()
     private lateinit var photoUri : Uri
@@ -35,22 +40,26 @@ class RecipeActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener  {
         setContentView(binding.root)
 
         initGoogleSignInClient()
-        setSupportActionBar(binding.recipeActivityToolbar)
+        setSupportActionBar(binding.recipeActivityToolbar.root)
+        val navHostFragment =
+                supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.findNavController()
+        val appBarConfiguration = AppBarConfiguration(navGraph = navController.graph)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
         val user = getUserFromIntent()
         showSnackBarMessage(
                 binding = binding.root,
-                message = "logged in as ${user?.email}"
+                message = "logged in as ${user?.email}  ✓"
         )
         binding.apply {
-            recipeActivityToolbar.apply {
-                title = user?.email
-                subtitle = user?.name
+            recipeActivityToolbar.root.apply {
+                title = "Recipe For you"
             }
-            Glide.with(this@RecipeActivity)
-                    .load(user?.imageUrl)
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .into(userImageView)
-            Log.d("TAG", "onCreate: ${user?.imageUrl} ")
+//            Glide.with(this@RecipeActivity)import kotlin.math.log
+//                    .load(user?.imageUrl)
+//                    .into(recipeActivityToolbar.userImageView)
+//            Log.d("TAG", "onCreate: ${user?.imageUrl} ")
         }
     }
 
@@ -65,21 +74,38 @@ class RecipeActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener  {
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem) : Boolean {
+        val user = getUserFromIntent()
        return when (item.itemId) {
-            R.id.sign_out -> {
-                signOutUser()
-                true
-            }
-            R.id.menu_setting -> {
-                // TODO : Navigate to Settings Activity
-                true
-            }
+           R.id.sign_out -> {
+               showDialogMessage(
+                       context = this,
+                       user = user?.name,
+                       signOutUser = {
+                           signOutUser()
+                           finish()
+                       })
+               true
+           }
+           R.id.setting -> {
+               // TODO : Navigate to Settings Activity
+               true
+           }
+           R.id.profile -> {
+               true
+           }
+           R.id.search -> {
+               true
+           }
             else -> {
                 super.onOptionsItemSelected(item)
             }

@@ -3,4 +3,19 @@
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="settings">Settings</string>
     <string name="sign_out">Sign out</string>
+    <string name="recipes">Recipes</string>
+    <string name="favorites">Favorites</string>
+    <string name="profile">Profile</string>
+    <string name="search">Search</string>
+    <string name="result_error">Recipes could not be loaded, Please Check Internet connection and retry</string>
+    <string name="retry">Retry</string>
+    <string name="no_result_found">No results found for this search</string>
+    <string name="network_error">Network Error</string>
+    <string name="check_internet_connection">Check your internet connection and Try again</string>
+    <string name="try_again">Try Again</string>
+    <string name="date_added">Date Added</string>
+    <string name="date_updated">Date Updated</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ingredients">ingredients</string>
 </resources>

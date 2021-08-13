@@ -12,8 +12,15 @@
     <color name="yellow">#DCA721</color>
     <color name="green">#50B819</color>
     <color name="blue">#1632CF</color>
-    <color name="lightBlack">#3A3939</color>
 
-    <color name="AuthFragmentTheme">#6376B1</color>
+    <color name="lightBlack">#3A3939</color>
+    <color name="darkWhite">#A5A5A5</color>
+
+    <color name="colorOrange">#A67F09</color>
+    <color name="colorGrey">#dddddd</color>
+    <color name="colorDarkGrey">#B3B2B2</color>
+
+    <color name="red_400">#EF3835</color>
+
 
 </resources>
